@@ -28,7 +28,7 @@ const createWindow = (): void => {
     mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 
     // Open the DevTools.
-    mainWindow.webContents.openDevTools();
+    // mainWindow.webContents.openDevTools();
 
 
     ipcMain.on('score:time', (_: IpcMainEvent, value: string) => {
