@@ -8,6 +8,7 @@ export const electronAPI = {
     setRedScore: (value: number) => ipcRenderer.send('score:redScore', value),
     setBlue: (value: string) => ipcRenderer.send('score:blueName', value),
     setRed: (value: string) => ipcRenderer.send('score:redName', value),
+    setMirred: (value: string) => ipcRenderer.send('score:mirred', value),
 }
 
 contextBridge.exposeInMainWorld('electronAPI', electronAPI);

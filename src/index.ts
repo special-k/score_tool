@@ -46,6 +46,9 @@ const createWindow = (): void => {
     ipcMain.on('score:redName', (_: IpcMainEvent, value: string) => {
         mainWindow.webContents.send('score:redName', value);
     });
+    ipcMain.on('score:mirred', (_: IpcMainEvent, value: string) => {
+        mainWindow.webContents.send('score:mirred', value);
+    });
 };
 
 const createControlWindow = (): void => {

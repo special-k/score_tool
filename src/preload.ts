@@ -8,4 +8,5 @@ contextBridge.exposeInMainWorld('electronAPI', {
     onRedScoreUpdate: (callback: Function) => ipcRenderer.on('score:redScore', (_event, value) => callback(value)),
     onBlueUpdate: (callback: Function) => ipcRenderer.on('score:blueName', (_event, value) => callback(value)),
     onRedUpdate: (callback: Function) => ipcRenderer.on('score:redName', (_event, value) => callback(value)),
+    onMirredUpdate: (callback: Function) => ipcRenderer.on('score:mirred', (_event, value) => callback(value)),
 })
