@@ -119,22 +119,22 @@ document.getElementById('app').appendChild(Fragment([
         }}), {on: ['redScore']}),
     ], {class: 'flex justify-center gap-4 mt-4'}),
     H.d([
-        H.button(['Очистить'], {
+        H.button(['Сбросить'], {
             class: clearButton,
             click: () => {
+                if (timeInterval) {
+                    clearInterval(timeInterval);
+                    timeInterval = null;
+                }
                 state.setValues({
                     timeLeft: 120,
                     started: false,
                     redScore: 0,
                     blueScore: 0,
-                    blueName: NOT_SELECT_ID,
-                    redName: NOT_SELECT_ID,
                 });
                 window.electronAPI.setRedScore(state.getValue('redScore'));
                 window.electronAPI.setBlueScore(state.getValue('blueScore'));
                 window.electronAPI.setTime(state.getValue('timeLeft'));
-                window.electronAPI.setRed(state.getValue('redName'));
-                window.electronAPI.setBlue(state.getValue('blueName'));
             }
         }),
         H.button(['Смена сторон'], {
