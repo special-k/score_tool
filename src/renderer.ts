@@ -54,10 +54,10 @@ document.getElementById('app').appendChild(state.render(() => H.d([
     })], {class: 'relative flex justify-center'}),
     H.d([
         H.d([
-            String(state.getValue('blueScore'))
+            String(state.getValue('redScore'))
         ], {class: 'flex-1 text-[18vw] leading-[18vw] relative text-center text-white'}),
         H.d([
-            String(state.getValue('redScore'))
+            String(state.getValue('blueScore'))
         ], {class: 'flex-1 text-[18vw] leading-[18vw] relative text-center text-white'}),
     ], {class: `flex ${state.getValue('mirred') ? 'flex-row-reverse' : ''}`}),
 ]), {on: ['time', 'redScore', 'blueScore', 'redName', 'blueName', 'mirred']}));

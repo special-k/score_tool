@@ -52,44 +52,41 @@ const buttonClass = 'w-48 shrink-0 text-white bg-gradient-to-br from-purple-600 
 const clearButton = 'mt-4 text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center';
 
 document.getElementById('app').appendChild(Fragment([
-    state.render(() =>
-        H.d([
-            state.render(() => H.select(
-                [H.option(['Выберите соперника'], {disabled: '', selected: '', value: NOT_SELECT_ID}), ...fighters.map((f) => H.option([f]))],
-                {
-                    class: `${selectClass} bg-red-200`,
-                    value: state.getValue('redName'),
-                    input: (e: InputEvent) => {
-                        state.setValue('redName', (e.target as HTMLInputElement).value);
-                        window.electronAPI.setRed(state.getValue('redName'));
-                    }
+    state.render(() => H.d([
+        state.render(() => H.select(
+            [H.option(['Выберите соперника'], {disabled: '', selected: '', value: NOT_SELECT_ID}), ...fighters.map((f) => H.option([f]))],
+            {
+                class: `${selectClass} bg-red-200`,
+                value: state.getValue('redName'),
+                input: (e: InputEvent) => {
+                    state.setValue('redName', (e.target as HTMLInputElement).value);
+                    window.electronAPI.setRed(state.getValue('redName'));
                 }
-            ), {on: ['redName']}),
-            state.render(() => H.input({
-                class: inputClass,
-                value: state.getValue('timeLeft'),
-                type: 'number',
-                change: (e: InputEvent) => {
-                    state.setValue('timeLeft', parseInt((e.target as HTMLInputElement).value, 10))
-                    window.electronAPI.setTime(state.getValue('timeLeft'));
-                }}), {on: ['timeLeft']}),
-            state.render(() => H.select(
-                [H.option(['Выберите соперника'], {disabled: '', selected: '', value: NOT_SELECT_ID}), ...fighters.map((f) => H.option([f]))],
-                {
-                    class: `${selectClass} bg-blue-200`,
-                    value: state.getValue('blueName'),
-                    input: (e: InputEvent) => {
-                        state.setValue('blueName', (e.target as HTMLInputElement).value);
-                        window.electronAPI.setBlue(state.getValue('blueName'));
-                    }
+            }
+        ), {on: ['redName']}),
+        state.render(() => H.input({
+            class: inputClass,
+            value: state.getValue('timeLeft'),
+            type: 'number',
+            change: (e: InputEvent) => {
+                state.setValue('timeLeft', parseInt((e.target as HTMLInputElement).value, 10))
+                window.electronAPI.setTime(state.getValue('timeLeft'));
+            }}), {on: ['timeLeft']}),
+        state.render(() => H.select(
+            [H.option(['Выберите соперника'], {disabled: '', selected: '', value: NOT_SELECT_ID}), ...fighters.map((f) => H.option([f]))],
+            {
+                class: `${selectClass} bg-blue-200`,
+                value: state.getValue('blueName'),
+                input: (e: InputEvent) => {
+                    state.setValue('blueName', (e.target as HTMLInputElement).value);
+                    window.electronAPI.setBlue(state.getValue('blueName'));
                 }
-            ), {on: ['blueName']}),
-        ], {
-            class: `flex gap-4 justify-center ${state.getValue('mirred') ? 'flex-row-reverse' : ''}`
-        }), {
-            on: ['mirred']
-        }),
-    H.d([
+            }
+        ), {on: ['blueName']}),
+    ], {
+        class: `flex gap-4 justify-center ${state.getValue('mirred') ? 'flex-row-reverse' : ''}`
+    }), {on: ['mirred']}),
+    state.render(() => H.d([
         state.render(() => H.input({class: inputClass, value: state.getValue('blueScore'), type: 'number', change: (e: InputEvent) => {
             state.setValue('blueScore', parseInt((e.target as HTMLInputElement).value, 10));
             window.electronAPI.setBlueScore(state.getValue('blueScore'));
@@ -117,7 +114,9 @@ document.getElementById('app').appendChild(Fragment([
             state.setValue('redScore', parseInt((e.target as HTMLInputElement).value, 10));
             window.electronAPI.setRedScore(state.getValue('redScore'));
         }}), {on: ['redScore']}),
-    ], {class: 'flex justify-center gap-4 mt-4'}),
+    ], {class: `flex justify-center gap-4 mt-4 ${state.getValue('mirred') ? 'flex-row-reverse' : ''}`}),
+        {on: ['mirred']}
+    ),
     H.d([
         H.button(['Сбросить'], {
             class: clearButton,
